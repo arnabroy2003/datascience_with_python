@@ -1,0 +1,9 @@
+﻿Weather,Temp,Playoutside
+Sunny,Hot,No
+Sunny,Mild,No
+Overcast,Hot,Yes
+Rainy,Mild,Yes
+Rainy,Cool,Yes
+Overcast,Cool,Yes
+Sunny,Cool,No
+Rainy,Hot,No
