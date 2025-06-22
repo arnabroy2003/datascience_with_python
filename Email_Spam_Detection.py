@@ -3,6 +3,7 @@ from sklearn.svm import SVC
 from sklearn.model_selection import train_test_split
 from sklearn.metrics import accuracy_score
 from sklearn.model_selection import cross_val_score
+import pickle
 
 emails = [
     "Win a brand new car now",              # spam
@@ -27,18 +28,26 @@ x_train, x_test, y_train, y_test = train_test_split(X,labels, test_size=0.2, ran
 Model = SVC(kernel='linear')
 Model.fit(x_train,y_train)
 
-y_pred = Model.predict(x_test)
+with open("model.pkl","wb") as f:
+    pickle.dump(Model, f)
 
-print(f"Accuracy:{accuracy_score(y_test,y_pred)*100}%")
+with open("vectorizer.pkl", "wb") as f:
+    pickle.dump(vectorizer, f)
 
-scores = cross_val_score(Model, X,labels,cv=5)
-print("Average Accuracy with cross fold: ", scores.mean()*100,"%")
+print("Model Saved")
 
-new_email = ["Get your free iPhone now"]
-new_vector = vectorizer.transform(new_email)
-prediction = Model.predict(new_vector)
-if prediction[0] == 1:
-    print("Spam")
-else:
-    print("Not Spam")
+# y_pred = Model.predict(x_test)
+
+# print(f"Accuracy:{accuracy_score(y_test,y_pred)*100}%")
+
+# scores = cross_val_score(Model, X,labels,cv=5)
+# print("Average Accuracy with cross fold: ", scores.mean()*100,"%")
+
+# new_email = ["Get your free iPhone now"]
+# new_vector = vectorizer.transform(new_email)
+# prediction = Model.predict(new_vector)
+# if prediction[0] == 1:
+#     print("Spam")
+# else:
+#     print("Not Spam")
 
